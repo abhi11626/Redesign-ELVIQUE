@@ -293,8 +293,8 @@ export default function Hero() {
       <div className="absolute inset-0 -z-20 bg-gradient-to-br from-sky-50 via-amber-50 to-rose-50" />
 
       {/* Blur blobs */}
-      <div className="absolute top-0 left-0 h-72 w-72 rounded-full bg-blue-200/30 blur-3xl -z-10" />
-      <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-amber-200/30 blur-3xl -z-10" />
+      <div className="absolute top-0 left-0 h-64 w-64 sm:h-72 sm:w-72 rounded-full bg-blue-200/30 blur-3xl -z-10 -translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute bottom-0 right-0 h-72 w-72 sm:h-96 sm:w-96 rounded-full bg-amber-200/30 blur-3xl -z-10 translate-x-1/3 translate-y-1/3" />
 
       {/* Grid Pattern */}
       <div className="absolute inset-0 -z-10 opacity-[0.03] bg-[linear-gradient(#000_1px,transparent_1px),linear-gradient(to_right,#000_1px,transparent_1px)] bg-[size:60px_60px]" />

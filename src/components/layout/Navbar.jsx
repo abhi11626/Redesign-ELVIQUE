@@ -3,7 +3,19 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { usePathname } from "next/navigation";
+import {
+  Menu,
+  Home,
+  Info,
+  Lightbulb,
+  Package,
+  HelpCircle,
+  Mail,
+  ArrowRight,
+  Calendar,
+  ChevronRight,
+} from "lucide-react";
 
 import {
   Sheet,
@@ -13,7 +25,9 @@ import {
 } from "@/components/ui/sheet";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,13 +40,15 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Opportunity", href: "/opportunity" },
-    { name: "Products", href: "/products" },
-    { name: "FAQ", href: "/faq" },
-    { name: "Contact", href: "/contact" },
+    { name: "Home", href: "/", icon: Home },
+    { name: "About", href: "/about", icon: Info },
+    { name: "Opportunity", href: "/opportunity", icon: Lightbulb },
+    { name: "Products", href: "/products", icon: Package },
+    { name: "FAQ", href: "/faq", icon: HelpCircle },
+    { name: "Contact", href: "/contact", icon: Mail },
   ];
+
+  const isActive = (href) => pathname === href;
 
   return (
     <header
@@ -131,7 +147,7 @@ export default function Navbar() {
 
           {/* Mobile Menu */}
           <div className="md:hidden">
-            <Sheet>
+            <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <button
                   aria-label="Open Menu"
@@ -143,55 +159,193 @@ export default function Navbar() {
                     justify-center
                     rounded-xl
                     border
+                    border-slate-200
                     bg-white
                     shadow-sm
+                    hover:shadow-md
+                    hover:border-slate-300
+                    transition-all
+                    active:scale-95
                   "
                 >
-                  <Menu size={22} />
+                  <Menu size={22} className="text-slate-700" />
                 </button>
               </SheetTrigger>
 
-              <SheetContent side="right" className="w-[300px]">
-                <SheetTitle className="mb-8">Elvique Navigation</SheetTitle>
+              <SheetContent
+                side="right"
+                className="w-[85vw] sm:w-[380px] p-0 bg-gradient-to-b from-white via-slate-50/50 to-white backdrop-blur-xl flex flex-col border-l border-slate-200/50"
+                showCloseButton={true}
+              >
+                {/* Premium Header with Logo */}
+                <div className="relative px-6 pt-6 pb-6 border-b border-slate-100">
+                  {/* Background gradient accent */}
+                  <div className="absolute top-0 right-0 h-24 w-24 bg-gradient-to-br from-indigo-100/30 to-sky-100/20 blur-2xl -z-10" />
 
-                <div className="flex flex-col gap-5">
-                  <Link href="/">Home</Link>
-                  <Link href="/about">About</Link>
-                  <Link href="/opportunity">Opportunity</Link>
-                  <Link href="/products">Products</Link>
-                  <Link href="/faq">FAQ</Link>
-                  <Link href="/contact">Contact</Link>
+                  <Link
+                    href="/"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-3 group"
+                  >
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 to-sky-500 rounded-lg blur opacity-75 group-hover:opacity-100 transition" />
+                      <Image
+                        src="/images/logo.webp"
+                        alt="Elvique Logo"
+                        width={40}
+                        height={40}
+                        className="object-contain relative rounded-lg bg-white p-1"
+                      />
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-bold bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">
+                        Elvique
+                      </h2>
+                      <p className="text-[10px] font-medium text-slate-500 uppercase tracking-widest">
+                        Vonkeller Apparels
+                      </p>
+                    </div>
+                  </Link>
+                </div>
 
-                  <div className="pt-6 border-t space-y-3">
-                    <Link
-                      href="/book-demo"
-                      className="
-                        block
-                        text-center
-                        rounded-xl
-                        bg-indigo-600
-                        text-white
-                        py-3
-                        font-semibold
-                      "
-                    >
-                      Book Demo
-                    </Link>
+                {/* Navigation Links */}
+                <nav className="flex-1 px-4 py-6 overflow-y-auto">
+                  <div className="space-y-2">
+                    {navLinks.map((link) => {
+                      const Icon = link.icon;
+                      const active = isActive(link.href);
 
-                    <Link
-                      href="/become-distributor"
-                      className="
-                        block
-                        text-center
-                        rounded-xl
-                        border
-                        py-3
-                        font-semibold
-                      "
-                    >
-                      Become Distributor
-                    </Link>
+                      return (
+                        <Link
+                          key={link.name}
+                          href={link.href}
+                          onClick={() => setOpen(false)}
+                          className={`
+                            group
+                            flex
+                            items-center
+                            gap-3
+                            px-4
+                            py-3.5
+                            rounded-xl
+                            font-medium
+                            transition-all
+                            duration-200
+                            ${
+                              active
+                                ? "bg-gradient-to-r from-indigo-600/90 to-sky-500/90 text-white shadow-lg shadow-indigo-600/20"
+                                : "text-slate-700 hover:bg-slate-100/80 active:bg-slate-100"
+                            }
+                          `}
+                        >
+                          <Icon
+                            size={20}
+                            className={`
+                              flex-shrink-0
+                              transition-all
+                              ${
+                                active
+                                  ? "text-white"
+                                  : "text-slate-500 group-hover:text-slate-700 group-hover:scale-110"
+                              }
+                            `}
+                          />
+                          <span className="flex-1">{link.name}</span>
+                          {active && (
+                            <ChevronRight
+                              size={18}
+                              className="text-white/80 ml-auto"
+                            />
+                          )}
+                        </Link>
+                      );
+                    })}
                   </div>
+                </nav>
+
+                {/* Divider with gradient */}
+                <div className="px-6 py-4">
+                  <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+                </div>
+
+                {/* Premium CTA Buttons */}
+                <div className="px-6 pb-6 space-y-3">
+                  {/* Primary Button - Book Demo with gradient */}
+                  <Link
+                    href="/book-demo"
+                    onClick={() => setOpen(false)}
+                    className="
+                      group
+                      block
+                      relative
+                      overflow-hidden
+                      rounded-xl
+                      bg-gradient-to-r
+                      from-indigo-600
+                      to-sky-500
+                      text-white
+                      px-5
+                      py-4
+                      font-semibold
+                      shadow-lg
+                      shadow-indigo-600/30
+                      hover:shadow-xl
+                      hover:shadow-indigo-600/40
+                      transition-all
+                      duration-300
+                      active:scale-95
+                      min-h-[48px]
+                      flex
+                      items-center
+                      justify-center
+                      gap-2
+                    "
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-700/50 to-sky-600/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Calendar size={18} />
+                    <span className="relative">Book Demo</span>
+                    <ArrowRight
+                      size={16}
+                      className="relative group-hover:translate-x-1 transition-transform"
+                    />
+                  </Link>
+
+                  {/* Secondary Button - Become Distributor */}
+                  <Link
+                    href="/become-distributor"
+                    onClick={() => setOpen(false)}
+                    className="
+                      group
+                      block
+                      rounded-xl
+                      border-2
+                      border-slate-200
+                      hover:border-indigo-300
+                      bg-white/50
+                      hover:bg-indigo-50/50
+                      backdrop-blur-sm
+                      text-slate-700
+                      hover:text-indigo-700
+                      px-5
+                      py-4
+                      font-semibold
+                      transition-all
+                      duration-300
+                      active:scale-95
+                      min-h-[48px]
+                      flex
+                      items-center
+                      justify-center
+                      gap-2
+                    "
+                  >
+                    <Package size={18} />
+                    <span>Become Distributor</span>
+                    <ChevronRight
+                      size={16}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  </Link>
                 </div>
               </SheetContent>
             </Sheet>

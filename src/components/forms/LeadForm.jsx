@@ -129,17 +129,6 @@ export default function LeadForm({
               />
             </div>
 
-            <div>
-              <label className="mb-2 block text-sm font-medium">City</label>
-
-              <Input
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                placeholder="Enter your city"
-              />
-            </div>
-
             {/* Distributor Fields */}
             {showBusinessFields && (
               <>
@@ -189,19 +178,6 @@ export default function LeadForm({
                 </div>
               </>
             )}
-
-            {/* Message */}
-            <div>
-              <label className="mb-2 block text-sm font-medium">Message</label>
-
-              <Textarea
-                rows={5}
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Tell us more..."
-              />
-            </div>
 
             <Button type="submit" className="w-full h-11">
               {buttonText}

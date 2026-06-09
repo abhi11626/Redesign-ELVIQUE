@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <main className="bg-white">
+    <main className="bg-white overflow-x-hidden">
       {/* Hero */}
       <section className="relative overflow-hidden border-b">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-sky-50" />

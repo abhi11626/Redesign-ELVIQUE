@@ -24,9 +24,9 @@ export default function Footer() {
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-transparent to-sky-950/20" />
 
-      <div className="absolute -top-32 left-0 h-80 w-80 rounded-full bg-indigo-600/10 blur-3xl" />
+      <div className="absolute -top-32 -left-40 h-64 w-64 sm:h-80 sm:w-80 rounded-full bg-indigo-600/10 blur-3xl -translate-x-1/2 -translate-y-1/2" />
 
-      <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-sky-600/10 blur-3xl" />
+      <div className="absolute -bottom-32 -right-40 h-64 w-64 sm:h-80 sm:w-80 rounded-full bg-sky-600/10 blur-3xl translate-x-1/2 translate-y-1/2" />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Main Footer */}

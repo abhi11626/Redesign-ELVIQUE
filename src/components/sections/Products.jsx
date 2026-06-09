@@ -105,11 +105,11 @@ export default function Products() {
       {/* Premium Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-yellow-50 to-pink-50" />
 
-      <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-sky-200/30 blur-[120px]" />
+      <div className="absolute -top-32 -left-32 sm:-top-40 sm:-left-40 h-64 w-64 sm:h-[500px] sm:w-[500px] rounded-full bg-sky-200/30 blur-[120px] -translate-x-1/2 -translate-y-1/2" />
 
-      <div className="absolute top-40 right-0 h-[450px] w-[450px] rounded-full bg-pink-200/20 blur-[120px]" />
+      <div className="absolute top-32 -right-24 sm:top-40 sm:right-0 h-64 w-64 sm:h-[450px] sm:w-[450px] rounded-full bg-pink-200/20 blur-[120px] translate-x-1/2" />
 
-      <div className="absolute bottom-0 left-1/3 h-[500px] w-[500px] rounded-full bg-yellow-200/20 blur-[120px]" />
+      <div className="absolute -bottom-32 left-1/4 sm:left-1/3 h-64 w-64 sm:h-[500px] sm:w-[500px] rounded-full bg-yellow-200/20 blur-[120px] -translate-x-1/2 translate-y-1/2" />
 
       {/* Content */}
       <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
