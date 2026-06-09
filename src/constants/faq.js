@@ -26,4 +26,17 @@ export const faqData = [
     answer:
       "Yes. The platform is designed to capture and manage prospect inquiries, demo requests, and distributor interest submissions. Administrative lead management and export workflows can be supported through future backend integrations.",
   },
+
+  {
+    id: 5,
+    question: "How do I attend the product and business demonstration?",
+    answer:
+      "Once you submit your interest, our team will contact you with available demo schedules. You can join online or in-person sessions depending on availability in your region.",
+  },
+  {
+    id: 6,
+    question: "Is there any registration or joining fee?",
+    answer:
+      "Currently, there is no mandatory joining fee to explore the platform. However, future program phases may include optional packages based on participation levels and business involvement.",
+  },
 ];
